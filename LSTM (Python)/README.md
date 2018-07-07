@@ -1,5 +1,6 @@
-Purpose of Jupyter notebooks:
+## Purpose
 
+Purpose of Jupyter notebooks:
 
 - LSTM 2 CLASSES.ipynb: Developing a LSTM model to predict 2 classes of student performance [fail/pass] (without auxiliary input)
 
