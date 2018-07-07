@@ -1,3 +1,5 @@
+## Purpose
+
 Purpose of files:
 
 - Data Transformation v3.R: Transform the original Open University UK data into a format suitable for analysis and exploration [Output: studentInfo_v3.csv]
