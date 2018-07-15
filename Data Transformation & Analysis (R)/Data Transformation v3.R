@@ -232,7 +232,6 @@ studentInfo[,13:45][is.na(studentInfo[,13:45])] <- 0
 studentInfo <- transform(studentInfo, year = substr(code_presentation,1,4), semester = substr(code_presentation,5,5))
 
 
-
 write.csv(studentInfo, file = "studentInfo_v3.csv")
 
 

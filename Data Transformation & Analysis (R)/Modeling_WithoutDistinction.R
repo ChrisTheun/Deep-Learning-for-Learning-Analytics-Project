@@ -19,6 +19,33 @@ studentInfo$id_student <- as.character(studentInfo$id_student)
 studentInfo <- studentInfo[studentInfo$final_result != "Withdrawn",]
 studentInfo[studentInfo == "Distinction"] <- "Pass"
 studentInfo <- droplevels(studentInfo)
+studentInfo <- studentInfo[studentInfo$code_module %in% c("BBB", "DDD", "FFF"),]
+
+range01 <- function(x){(x-min(x))/(max(x)-min(x))}
+
+studentInfo$num_of_prev_attempts <- range01(studentInfo$num_of_prev_attempts)
+studentInfo$studied_credits <- range01(studentInfo$studied_credits)
+
+studentInfo[studentInfo$code_module == "BBB" & studentInfo$code_presentation !="2014J",13:23] <- range01(studentInfo[studentInfo$code_module == "BBB" & studentInfo$code_presentation !="2014J",13:23])
+studentInfo[studentInfo$code_module == "BBB" & studentInfo$code_presentation =="2014J",13:23] <- range01(studentInfo[studentInfo$code_module == "BBB" & studentInfo$code_presentation =="2014J",13:23])
+studentInfo[studentInfo$code_module == "DDD" & studentInfo$code_presentation !="2014J",13:23] <- range01(studentInfo[studentInfo$code_module == "DDD" & studentInfo$code_presentation !="2014J",13:23])
+studentInfo[studentInfo$code_module == "DDD" & studentInfo$code_presentation =="2014J",13:23] <- range01(studentInfo[studentInfo$code_module == "DDD" & studentInfo$code_presentation =="2014J",13:23])
+studentInfo[studentInfo$code_module == "FFF" & studentInfo$code_presentation !="2014J",13:23] <- range01(studentInfo[studentInfo$code_module == "FFF" & studentInfo$code_presentation !="2014J",13:23])
+studentInfo[studentInfo$code_module == "FFF" & studentInfo$code_presentation =="2014J",13:23] <- range01(studentInfo[studentInfo$code_module == "FFF" & studentInfo$code_presentation =="2014J",13:23])
+
+studentInfo[studentInfo$code_module == "BBB" & studentInfo$code_presentation !="2014J",24:34] <- range01(studentInfo[studentInfo$code_module == "BBB" & studentInfo$code_presentation !="2014J",24:34])
+studentInfo[studentInfo$code_module == "BBB" & studentInfo$code_presentation =="2014J",24:34] <- range01(studentInfo[studentInfo$code_module == "BBB" & studentInfo$code_presentation =="2014J",24:34])
+studentInfo[studentInfo$code_module == "DDD" & studentInfo$code_presentation !="2014J",24:34] <- range01(studentInfo[studentInfo$code_module == "DDD" & studentInfo$code_presentation !="2014J",24:34])
+studentInfo[studentInfo$code_module == "DDD" & studentInfo$code_presentation =="2014J",24:34] <- range01(studentInfo[studentInfo$code_module == "DDD" & studentInfo$code_presentation =="2014J",24:34])
+studentInfo[studentInfo$code_module == "FFF" & studentInfo$code_presentation !="2014J",24:34] <- range01(studentInfo[studentInfo$code_module == "FFF" & studentInfo$code_presentation !="2014J",24:34])
+studentInfo[studentInfo$code_module == "FFF" & studentInfo$code_presentation =="2014J",24:34] <- range01(studentInfo[studentInfo$code_module == "FFF" & studentInfo$code_presentation =="2014J",24:34])
+
+studentInfo[studentInfo$code_module == "BBB" & studentInfo$code_presentation !="2014J",35:45] <- range01(studentInfo[studentInfo$code_module == "BBB" & studentInfo$code_presentation !="2014J",35:45])
+studentInfo[studentInfo$code_module == "BBB" & studentInfo$code_presentation =="2014J",35:45] <- range01(studentInfo[studentInfo$code_module == "BBB" & studentInfo$code_presentation =="2014J",35:45])
+studentInfo[studentInfo$code_module == "DDD" & studentInfo$code_presentation !="2014J",35:45] <- range01(studentInfo[studentInfo$code_module == "DDD" & studentInfo$code_presentation !="2014J",35:45])
+studentInfo[studentInfo$code_module == "DDD" & studentInfo$code_presentation =="2014J",35:45] <- range01(studentInfo[studentInfo$code_module == "DDD" & studentInfo$code_presentation =="2014J",35:45])
+studentInfo[studentInfo$code_module == "FFF" & studentInfo$code_presentation !="2014J",35:45] <- range01(studentInfo[studentInfo$code_module == "FFF" & studentInfo$code_presentation !="2014J",35:45])
+studentInfo[studentInfo$code_module == "FFF" & studentInfo$code_presentation =="2014J",35:45] <- range01(studentInfo[studentInfo$code_module == "FFF" & studentInfo$code_presentation =="2014J",35:45])
 
 
 
@@ -27,6 +54,7 @@ studentInfo_PreCourse <- studentInfo[,c(1:13,24,35,46,47)]
 studentInfo_PreCourse_BBB <- studentInfo_PreCourse[studentInfo_PreCourse$code_module == "BBB",]
 studentInfo_PreCourse_DDD <- studentInfo_PreCourse[studentInfo_PreCourse$code_module == "DDD",]
 studentInfo_PreCourse_FFF <- studentInfo_PreCourse[studentInfo_PreCourse$code_module == "FFF",]
+
 
 
 Deciles <- c(0:10)
@@ -182,6 +210,7 @@ for(i in 1:ncol(LogReg_Accuracy)){
   LogReg_Fail_Sensitivity[3,i] <- round(glm_cM$byClass[[1]],2) # Sensitivity "Fail" = The proportion of "Fails" correctly predicted out of total "Fails"
   print(glm_cM$overall[1])
 }
+summary(glm)
 
 # Support Vector Machine ----------------------------------------------------------------------------
 
@@ -314,7 +343,7 @@ for(i in 1:ncol(RF_Accuracy)){
   RF_Fail_Sensitivity[3,i] <- round(RF_cM$byClass[[1]],2) # Sensitivity "Fail" = The proportion of "Fails" correctly predicted out of total "Fails"
   print(RF_cM$overall[1])
 }
-varImpPlot(RF)
+varImpPlot(RF, main = "Predictive power variables in course FFF")
 
 
 # Artificial Neural Network -------------------------------------------------------------------------
