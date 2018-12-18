@@ -1,0 +1,2 @@
+In this folder all of the LSTM models created with the Keras and Hyperas package in Python can be found as well as the traditional machine learning models created with the sci-kit learn package.
+It is necessary to run the two files in the data transformation folder first, as they generate the right data files required for the modeling.
