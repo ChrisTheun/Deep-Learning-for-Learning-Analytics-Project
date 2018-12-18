@@ -8,9 +8,9 @@ If you want to run the necessary code, first download the OULAD dataset here: ht
 
 I structured my repository in the following way:
 
-- Data Transformation and Analysis (R): Here you can find the R files necessary to (1) transform the original data into a suitable format for exploration and analysis, (2) explore the data in more detail in a descriptive sense. These insights are also documented and can be found in the results folder. (3) Develop basic machine learning models (logistic regression, SVM, naive Bayes & random forests) to predict student performance.
+- Data Transformation: In this folder you can find the files necessary to prepare and transform the data to get the data ready for modeling (Required both R and Python)
 
-- LSTM (Python): Here you can find the Jupyter notebooks necessary to build the LSTM models used to predict student performance. These LSTM models are build with the Keras package.
+- Modeling: In this folder you can find the LSTM and traditional machine learning models
 
-- Results: Here you can find the (preliminary) results of the data exploration and analysis I documented.
+- Legacy: Older back-up files, not necessary for the modeling
 
